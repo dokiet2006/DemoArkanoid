@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import static arkanoid.GameObject.GAME_HEIGHT;
+import static arkanoid.GameObject.GAME_WIDTH;
+
 public class Menu extends JFrame {
     private JButton playButton;
     private JButton exitButton;
@@ -17,7 +20,7 @@ public class Menu extends JFrame {
 
     public Menu() {
         setTitle("ARKANOID");
-        setSize(1200, 800);
+        setSize(GAME_WIDTH, GAME_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
