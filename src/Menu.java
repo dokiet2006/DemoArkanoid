@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import arkanoid.Sound;
 
 import static arkanoid.GameObject.GAME_HEIGHT;
 import static arkanoid.GameObject.GAME_WIDTH;
@@ -12,6 +13,8 @@ public class Menu extends JFrame {
     private JButton exitButton;
     private JButton bagButton;
     private Image backgroundImage;
+    private Sound clickStart;
+    private Sound clickBag;
 
     // Khai bao anh mac dinh va anh hover
     private ImageIcon startIcon, startHoverIcon;
@@ -25,7 +28,10 @@ public class Menu extends JFrame {
         setLocationRelativeTo(null);
 
         // Tai anh nen
-        backgroundImage = new ImageIcon("img/background.png").getImage();
+        backgroundImage = new ImageIcon("img/background.jpg").getImage();
+
+        clickStart = new Sound("sound/click.wav");
+        clickBag = new Sound("sound/bag.wav");
 
         // Tai anh nut
         startIcon = new ImageIcon("img/start_button.png");
@@ -62,7 +68,7 @@ public class Menu extends JFrame {
 
         // Dat vi tri nut
         startButton.setBounds(500, 200, 200, 120);
-        exitButton.setBounds(500, 400, 200, 120);
+        exitButton.setBounds(500, 400, 200, 130);
         bagButton.setBounds(1050, 640, 100, 120);
 
         // Them su kien click
@@ -121,6 +127,7 @@ public class Menu extends JFrame {
 
     // Khi nhan nut start
     private void startGame(ActionEvent e) {
+        clickStart.play();
         JOptionPane.showMessageDialog(this, "Game Started!");
     }
 
@@ -131,6 +138,7 @@ public class Menu extends JFrame {
 
     // Khi nhan nut bag
     private void openBag(ActionEvent e) {
+        clickBag.play();
         JOptionPane.showMessageDialog(this, "Bag Clicked!");
     }
 
