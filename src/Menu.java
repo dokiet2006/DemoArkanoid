@@ -17,12 +17,12 @@ public class Menu extends JFrame {
 
     public Menu() {
         setTitle("ARKANOID");
-        setSize(800, 600);
+        setSize(1200, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         // Tai anh nen
-        backgroundImage = new ImageIcon("img/background.jpg").getImage();
+        backgroundImage = new ImageIcon("img/background.png").getImage();
 
         // Tai anh nut
         playIcon = new ImageIcon("img/play_button.png");
@@ -58,9 +58,9 @@ public class Menu extends JFrame {
         }
 
         // Dat vi tri nut
-        playButton.setBounds(300, 200, 200, 80);
-        exitButton.setBounds(300, 300, 200, 80);
-        bagButton.setBounds(660, 450, 100, 100);
+        playButton.setBounds(500, 200, 200, 80);
+        exitButton.setBounds(500, 400, 200, 80);
+        bagButton.setBounds(1050, 640, 100, 100);
 
         // Them su kien click
         playButton.addActionListener(this::playGame);
