@@ -8,13 +8,13 @@ import static arkanoid.GameObject.GAME_HEIGHT;
 import static arkanoid.GameObject.GAME_WIDTH;
 
 public class Menu extends JFrame {
-    private JButton playButton;
+    private JButton startButton;
     private JButton exitButton;
     private JButton bagButton;
     private Image backgroundImage;
 
     // Khai bao anh mac dinh va anh hover
-    private ImageIcon playIcon, playHoverIcon;
+    private ImageIcon startIcon, startHoverIcon;
     private ImageIcon exitIcon, exitHoverIcon;
     private ImageIcon bagCloseIcon, bagOpenIcon;
 
@@ -28,8 +28,8 @@ public class Menu extends JFrame {
         backgroundImage = new ImageIcon("img/background.png").getImage();
 
         // Tai anh nut
-        playIcon = new ImageIcon("img/play_button.png");
-        playHoverIcon = new ImageIcon("img/play_hover.png");
+        startIcon = new ImageIcon("img/start_button.png");
+        startHoverIcon = new ImageIcon("img/start_hover.png");
 
         exitIcon = new ImageIcon("img/exit_button.png");
         exitHoverIcon = new ImageIcon("img/exit_hover.png");
@@ -48,12 +48,12 @@ public class Menu extends JFrame {
         backgroundPanel.setLayout(null);
 
         // Tao cac nut voi anh mac dinh
-        playButton = new JButton(playIcon);
+        startButton = new JButton(startIcon);
         exitButton = new JButton(exitIcon);
         bagButton = new JButton(bagCloseIcon);
 
         // Tat vien va nen de hien thi anh dep
-        for (JButton btn : new JButton[]{playButton, exitButton, bagButton}) {
+        for (JButton btn : new JButton[]{startButton, exitButton, bagButton}) {
             btn.setBorderPainted(false);
             btn.setContentAreaFilled(false);
             btn.setFocusPainted(false);
@@ -61,25 +61,25 @@ public class Menu extends JFrame {
         }
 
         // Dat vi tri nut
-        playButton.setBounds(500, 200, 200, 80);
-        exitButton.setBounds(500, 400, 200, 80);
-        bagButton.setBounds(1050, 640, 100, 100);
+        startButton.setBounds(500, 200, 200, 120);
+        exitButton.setBounds(500, 400, 200, 120);
+        bagButton.setBounds(1050, 640, 100, 120);
 
         // Them su kien click
-        playButton.addActionListener(this::playGame);
+        startButton.addActionListener(this::startGame);
         exitButton.addActionListener(this::exitGame);
         bagButton.addActionListener(this::openBag);
 
-        // Them su kien hover cho play
-        playButton.addMouseListener(new MouseAdapter() {
+        // Them su kien hover cho start
+        startButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                playButton.setIcon(playHoverIcon);
+                startButton.setIcon(startHoverIcon);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                playButton.setIcon(playIcon);
+                startButton.setIcon(startIcon);
             }
         });
 
@@ -110,7 +110,7 @@ public class Menu extends JFrame {
         });
 
         // Them nut vao panel
-        backgroundPanel.add(playButton);
+        backgroundPanel.add(startButton);
         backgroundPanel.add(exitButton);
         backgroundPanel.add(bagButton);
 
@@ -119,8 +119,8 @@ public class Menu extends JFrame {
         setVisible(true);
     }
 
-    // Khi nhan nut play
-    private void playGame(ActionEvent e) {
+    // Khi nhan nut start
+    private void startGame(ActionEvent e) {
         JOptionPane.showMessageDialog(this, "Game Started!");
     }
 
