@@ -10,14 +10,18 @@ import static arkanoid.GameObject.GAME_WIDTH;
 
 public class Menu extends JFrame {
     private JButton startButton;
+    private JButton tutorialButton;
     private JButton exitButton;
     private JButton bagButton;
+
     private Image backgroundImage;
+
     private Sound clickStart;
     private Sound clickBag;
 
-    // Khai bao anh mac dinh va anh hover
+    // Ảnh mặc định và hover
     private ImageIcon startIcon, startHoverIcon;
+    private ImageIcon tutorialIcon, tutorialHoverIcon;
     private ImageIcon exitIcon, exitHoverIcon;
     private ImageIcon bagCloseIcon, bagOpenIcon;
 
@@ -27,15 +31,19 @@ public class Menu extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Tai anh nen
-        backgroundImage = new ImageIcon("img/background.jpg").getImage();
-
+        // sound
         clickStart = new Sound("sound/click.wav");
         clickBag = new Sound("sound/bag.wav");
 
-        // Tai anh nut
+        // background
+        backgroundImage = new ImageIcon("img/background.jpg").getImage();
+
+        // img button
         startIcon = new ImageIcon("img/start_button.png");
         startHoverIcon = new ImageIcon("img/start_hover.png");
+
+        tutorialIcon = new ImageIcon("img/tutorial_button.png");
+        tutorialHoverIcon = new ImageIcon("img/tutorial_hover.png");
 
         exitIcon = new ImageIcon("img/exit_button.png");
         exitHoverIcon = new ImageIcon("img/exit_hover.png");
@@ -43,7 +51,7 @@ public class Menu extends JFrame {
         bagCloseIcon = new ImageIcon("img/bag_close.png");
         bagOpenIcon = new ImageIcon("img/bag_open.png");
 
-        // Tao panel nen
+        // panel
         JPanel backgroundPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -53,30 +61,33 @@ public class Menu extends JFrame {
         };
         backgroundPanel.setLayout(null);
 
-        // Tao cac nut voi anh mac dinh
+        // button
         startButton = new JButton(startIcon);
+        tutorialButton = new JButton(tutorialIcon);
         exitButton = new JButton(exitIcon);
         bagButton = new JButton(bagCloseIcon);
 
-        // Tat vien va nen de hien thi anh dep
-        for (JButton btn : new JButton[]{startButton, exitButton, bagButton}) {
+        // xoa vien va nen
+        for (JButton btn : new JButton[]{startButton, tutorialButton, exitButton, bagButton}) {
             btn.setBorderPainted(false);
             btn.setContentAreaFilled(false);
             btn.setFocusPainted(false);
             btn.setOpaque(false);
         }
 
-        // Dat vi tri nut
-        startButton.setBounds(500, 200, 200, 120);
-        exitButton.setBounds(500, 400, 200, 130);
+        // toa do nut
+        startButton.setBounds(500, 180, 200, 110);
+        exitButton.setBounds(500, 420, 200, 110);
         bagButton.setBounds(1050, 640, 100, 120);
+        tutorialButton.setBounds(1050, 550, 100, 100);
 
-        // Them su kien click
+        // su kien Click
         startButton.addActionListener(this::startGame);
+        tutorialButton.addActionListener(this::showTutorial);
         exitButton.addActionListener(this::exitGame);
         bagButton.addActionListener(this::openBag);
 
-        // Them su kien hover cho start
+        // Hover Start
         startButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -89,7 +100,20 @@ public class Menu extends JFrame {
             }
         });
 
-        // Them su kien hover cho exit
+        // Hover Tutorial
+        tutorialButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                tutorialButton.setIcon(tutorialHoverIcon);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                tutorialButton.setIcon(tutorialIcon);
+            }
+        });
+
+        // Hover Exit
         exitButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -102,7 +126,7 @@ public class Menu extends JFrame {
             }
         });
 
-        // Them su kien hover cho bag
+        // Hover Bag
         bagButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -115,33 +139,53 @@ public class Menu extends JFrame {
             }
         });
 
-        // Them nut vao panel
+        // them nut vao pannel
         backgroundPanel.add(startButton);
+        backgroundPanel.add(tutorialButton);
         backgroundPanel.add(exitButton);
         backgroundPanel.add(bagButton);
 
-        // Gan panel vao frame
+        // gan pannel vao frame
         setContentPane(backgroundPanel);
         setVisible(true);
     }
 
-    // Khi nhan nut start
+    // Click Start
     private void startGame(ActionEvent e) {
         clickStart.play();
-        JOptionPane.showMessageDialog(this, "Game Started!");
+        JOptionPane.showMessageDialog(this, "Comming Soon");
     }
 
-    // Khi nhan nut exit
+    // Click Tutorial
+    private void showTutorial(ActionEvent e) {
+        clickStart.play();
+        String tutorialText = """
+                * Hướng dẫn sử dụng :
+                    + Nhấn SPACE để bắt đầu
+                    + Sử dụng phím A/D hoặc trái/phải để di chuyển sang trái hoặc phải
+                    + Khi thanh Energy sẵn sàng có thể nhấn "Q" để kích hoạt Artifact
+                                   
+                * Nhiệm vụ
+                    + Diểu khiển thanh Paddle linh hoạt để đỡ bóng
+                    + Phá hủy toàn bộ Bricks để qua màn
+                    + Đỡ thất bại hoặc chịu sát thương quá số lượng cho phép, nhiệm vụ thất bại
+                """
+                ;
+        JOptionPane.showMessageDialog(this, tutorialText, "Hướng Dẫn", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    // Click Exit
     private void exitGame(ActionEvent e) {
         System.exit(0);
     }
 
-    // Khi nhan nut bag
+    // Click Bag
     private void openBag(ActionEvent e) {
         clickBag.play();
-        JOptionPane.showMessageDialog(this, "Bag Clicked!");
+        JOptionPane.showMessageDialog(this, "Comming Soon");
     }
 
+    // Render
     public static void main(String[] args) {
         SwingUtilities.invokeLater(Menu::new);
     }
