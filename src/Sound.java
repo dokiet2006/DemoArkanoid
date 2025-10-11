@@ -23,18 +23,20 @@ public class Sound {
     }
 
     /**
-     * Phát âm thanh một lần
+     * phat 1 lan
      */
     public void play() {
         if (clip != null) {
-            if (clip.isRunning()) clip.stop();
+            if (clip.isRunning()) {
+                clip.stop();
+            }
             clip.setFramePosition(0);
             clip.start();
         }
     }
 
     /**
-     * Phát lặp liên tục (ví dụ cho nhạc nền)
+     * phat lap lai
      */
     public void loop() {
         if (clip != null) {
@@ -43,7 +45,7 @@ public class Sound {
     }
 
     /**
-     * Dừng âm thanh
+     * dung
      */
     public void stop() {
         if (clip != null && clip.isRunning()) {
@@ -52,7 +54,7 @@ public class Sound {
     }
 
     /**
-     * Giải phóng tài nguyên
+     * giai phong
      */
     public void close() {
         if (clip != null) {
