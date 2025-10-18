@@ -2,8 +2,8 @@ package arkanoid;
 
 public class GameObject {
 
-    public static final int GAME_WIDTH = 1200;
-    public static final int GAME_HEIGHT = 800;
+    public static final int GAME_WIDTH = 1280;
+    public static final int GAME_HEIGHT = 960;
     public static final int PADDLE_WIDTH = 100;
     public static final int PADDLE_HEIGHT = 20;
     public static final int BALL_SIZE = 10;
@@ -12,16 +12,19 @@ public class GameObject {
     public static final int SPEED_BALL = 5;
     public static final int SPEED_PADDLE = 10;
 
-    protected int x;
-    protected int y;
-    protected int width;
-    protected int height;
+    private int x;
+    private int y;
+    private int width;
+    private int height;
+    String imgPath;
 
-    public GameObject(int x, int y, int width, int height) {
+
+    public GameObject(int x, int y, int width, int height, String imgPath) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.imgPath = imgPath;
     }
     public void update() {
 

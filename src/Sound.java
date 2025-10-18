@@ -7,9 +7,7 @@ import java.io.IOException;
 public class Sound {
     private Clip clip;
 
-    /**
-     * Khởi tạo âm thanh từ đường dẫn file .wav
-     */
+    // khoi tao am thanh tu duong dan
     public Sound(String filePath) {
         try {
             File soundFile = new File(filePath);
@@ -22,9 +20,7 @@ public class Sound {
         }
     }
 
-    /**
-     * phat 1 lan
-     */
+    // phat 1 lan
     public void play() {
         if (clip != null) {
             if (clip.isRunning()) {
@@ -35,27 +31,21 @@ public class Sound {
         }
     }
 
-    /**
-     * phat lap lai
-     */
+    // phat lap lai
     public void loop() {
         if (clip != null) {
             clip.loop(Clip.LOOP_CONTINUOUSLY);
         }
     }
 
-    /**
-     * dung
-     */
+    // dung
     public void stop() {
         if (clip != null && clip.isRunning()) {
             clip.stop();
         }
     }
 
-    /**
-     * giai phong
-     */
+    //giai phong
     public void close() {
         if (clip != null) {
             clip.close();

@@ -16,6 +16,7 @@ public class Menu extends JFrame {
     private JButton gachaButton;
 
     private Image backgroundImage;
+    private Image arkanoidImage;
 
     private Sound click;
     private Sound clickBag;
@@ -41,7 +42,9 @@ public class Menu extends JFrame {
         backgroundMusic.loop();
 
         // background
-        backgroundImage = new ImageIcon("img/background.jpg").getImage();
+        backgroundImage = new ImageIcon("img/background_menu.png").getImage();
+
+        arkanoidImage = new ImageIcon("img/arkanoid.png").getImage();
 
         // img button
         startIcon = new ImageIcon("img/start_button.png");
@@ -65,6 +68,7 @@ public class Menu extends JFrame {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+                g.drawImage(arkanoidImage, 350, 100, this);
             }
         };
         backgroundPanel.setLayout(null);
@@ -85,8 +89,8 @@ public class Menu extends JFrame {
         }
 
         // toa do nut
-        startButton.setBounds(500, 180, 200, 110);
-        exitButton.setBounds(500, 420, 200, 110);
+        startButton.setBounds(550, 350, 200, 120);
+        exitButton.setBounds(550, 500, 200, 120);
         bagButton.setBounds(1050, 640, 100, 120);
         tutorialButton.setBounds(1050, 20, 100, 100);
         gachaButton.setBounds(1050, 500, 100, 100);
@@ -195,7 +199,7 @@ public class Menu extends JFrame {
                     + Nhấn SPACE để bắt đầu
                     + Sử dụng phím A/D hoặc trái/phải để di chuyển sang trái hoặc phải
                     + Khi thanh Energy sẵn sàng có thể nhấn "Q" để kích hoạt Artifact
-                                   
+
                 * Nhiệm vụ
                     + Diểu khiển thanh Paddle linh hoạt để đỡ bóng
                     + Phá hủy toàn bộ Bricks để qua màn
