@@ -39,13 +39,13 @@ public class Menu extends JFrame {
         // Nút Start
         JButton startBtn = ButtonManager.createImageButton(
                 "img/start_button.png", "img/start_hover.png",
-                550, 350, click, e -> startGame());
+                500, 350, click, e -> startGame());
         backgroundPanel.add(startBtn);
 
         // Nút Exit
         JButton exitBtn = ButtonManager.createImageButton(
                 "img/exit_button.png", "img/exit_hover.png",
-                550, 500, click, e -> exitGame());
+                500, 500, click, e -> exitGame());
         backgroundPanel.add(exitBtn);
 
         setContentPane(backgroundPanel);
@@ -58,7 +58,7 @@ public class Menu extends JFrame {
     }
 
     private void exitGame() {
-        backgroundMusic.stop();
+        click.play();
         System.exit(0);
     }
 

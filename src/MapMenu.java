@@ -42,12 +42,20 @@ public class MapMenu extends JFrame {
 
         // Nút Back
         JButton back = ButtonManager.createImageButton(
-                "img/button/back.png", null,
-                50, 600, click, e -> {
+                "img/back_button.png", null,
+                0, 680, click, e -> {
                     this.dispose();
                     new Menu();
                 });
         panel.add(back);
+
+        JButton gacha = ButtonManager.createImageButton(
+                "img/gacha_button.png", "img/gacha_hover.png",
+                1135, 670, click, e -> {
+                    JOptionPane.showMessageDialog(this, "Comming soon");
+                }
+        );
+        panel.add(gacha);
 
         setContentPane(panel);
         setVisible(true);
