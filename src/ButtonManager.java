@@ -22,40 +22,40 @@ public class ButtonManager {
      * @return JButton đã cấu hình
      */
     public static JButton createImageButton(String imagePath, String hoverPath,
-                                            int x, int y, Sound click,
-                                            ActionListener action) {
+                                            int x, int y, Sound click, ActionListener action) {
+
         ImageIcon icon = new ImageIcon(imagePath);
-        JButton btn = new JButton(icon);
-        btn.setBounds(x, y, icon.getIconWidth(), icon.getIconHeight());
+        JButton button = new JButton(icon);
+        button.setBounds(x, y, icon.getIconWidth(), icon.getIconHeight());
 
         // loại bỏ viền & nền
-        btn.setBorderPainted(false);
-        btn.setContentAreaFilled(false);
-        btn.setFocusPainted(false);
-        btn.setOpaque(false);
+        button.setBorderPainted(false);
+        button.setContentAreaFilled(false);
+        button.setFocusPainted(false);
+        button.setOpaque(false);
 
         // hover
         if (hoverPath != null) {
             ImageIcon hoverIcon = new ImageIcon(hoverPath);
-            btn.addMouseListener(new MouseAdapter() {
+            button.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseEntered(MouseEvent e) {
-                    btn.setIcon(hoverIcon);
+                    button.setIcon(hoverIcon);
                 }
 
                 @Override
                 public void mouseExited(MouseEvent e) {
-                    btn.setIcon(icon);
+                    button.setIcon(icon);
                 }
             });
         }
 
         // click
-        btn.addActionListener(e -> {
+        button.addActionListener(e -> {
             if (click != null) click.play();
             action.actionPerformed(e);
         });
 
-        return btn;
+        return button;
     }
 }
